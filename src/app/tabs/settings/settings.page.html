@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="dark">
+    <ion-title color="light">Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="weatherForm">
+    <table width="100%">
+      <tr>
+        <td>
+          <ion-item mode="ios">
+            <ion-label color="dark" position="floating">Enter Location: </ion-label>
+            <ion-input formControlName="location" type="text" clear-input="true" placeholder="Location..."></ion-input>
+          </ion-item> <br>
+          <ion-text [hidden]="weatherForm.controls.location.valid" color="danger" class="ion-padding-left"> Enter a
+            valid
+            location</ion-text>
+        </td>
+      </tr>
+      <tr>
+        <td> <br />
+          <ion-button mode="ios" color="dark" expand="block" [disabled]="!weatherForm.controls.location.valid"
+            (click)="saveForm()">
+            <ion-icon slot="end" color="light" name="add"></ion-icon>Change
+          </ion-button>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+</ion-content>

@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar mode="ios" color="dark">
+    <ion-title color="light">Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <form [formGroup]="weatherForm">
+    <table width="100%">
+      <tr>
+        <td>
+          <ion-item mode="ios">
+            <ion-label color="dark" position="floating">Enter Location: </ion-label>
+            <ion-input formControlName="location" type="text" clear-input="true" placeholder="Location..."></ion-input>
+          </ion-item> <br />
+          <ion-text [hidden]="weatherForm.controls.location.valid" color="danger" class="ion-padding-left"> Enter a
+            valid
+            location</ion-text>
+        </td>
+      </tr>
+      <tr>
+        <td> <br />
+          <ion-button mode="ios" color="dark" expand="block" [disabled]="!weatherForm.controls.location.valid"
+            (click)="getWeather(weatherForm)">
+            <ion-icon slot="end" color="light" name="send"></ion-icon>Get Weather
+          </ion-button>
+        </td>
+      </tr>
+    </table>
+  </form>
+
+  <div *ngIf="weatherResult" style="text-align: center;">
+    <h3>Right Now</h3>
+    <ion-icon slot="end" color={{color}} name="{{icon}}"></ion-icon>
+    <ion-text color="medium" mode="ios">
+      {{currentWeather.summary}}&deg;
+    </ion-text>
+
+    <table style="width: 100%; margin-top: 10px;">
+      <tr>
+        <td>Temperature</td>
+        <td>{{currentWeather.temperature | toCelsius}}&deg;</td>
+      </tr>
+      <tr>
+        <td>Dew point</td>
+        <td>{{currentWeather.dewPoint}}</td>
+      </tr>
+      <tr>
+        <td>Humidity</td>
+        <td>{{currentWeather.humidity | to100}}%</td>
+      </tr>
+      <tr>
+        <td>Visibility</td>
+        <td>{{currentWeather.visibility}} mi</td>
+      </tr>
+      <tr>
+        <td>Pressure</td>
+        <td>{{currentWeather.pressure}} mb</td>
+      </tr>
+    </table>
+
+  </div>
+
+</ion-content>
